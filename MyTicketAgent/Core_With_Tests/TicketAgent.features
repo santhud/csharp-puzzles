@@ -1,0 +1,64 @@
+﻿Feature: As a ticket agent user
+I want to be able to interact with the ticket agent
+So that I can buy tickets as needed
+
+Scenario: Invoke Backend when program name and price match
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '12.5' pounds
+Then the agent should invoke the backend
+
+Scenario: Invoke Backend when program name mtaches and the and price is less
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '12.0' pounds
+Then the agent should invoke the backend
+
+Scenario: Do not Invoke Backend when program name mtaches and the and price is more
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '13.0' pounds
+Then the agent should not invoke the backend
+
+Scenario: Do not Invoke Backend when program name does not mtache and the and price is more
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '13.0' pounds
+Then the agent should not invoke the backend
+
+Scenario: Do not Invoke Backend when program name does not mtache and the and price is less
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '12.0' pounds
+Then the agent should not invoke the backend
+
+Scenario: Do not Invoke Backend when program name does not mtache and the and price is equal
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '12.5' pounds
+Then the agent should not invoke the backend
+
+Scenario: Trigger Success event if backend did not return any error
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '12.0' pounds
+Then the agent should invoke the backend
+And the Success event should be triggered
+
+Scenario: Trigger Failure event if backend returns any error
+Given I have an agent configured to buy '5' tickets for the 'ABC' program at '12.5' pounds
+And the backend is returning a failure
+When a ticket price message is received
+And the message is for the 'ABC' program
+And the price is '12.0' pounds
+Then the agent should invoke the backend
+And the Failure event should be triggered
+
+

@@ -2,7 +2,7 @@
 
 namespace Core_With_Tests
 {
-    public class Agent : IAgent, IValueGenerator
+    public class Agent : IAgent, IPriceGenerator
     {
         public string Company { get; private set; }
         public int Qty { get; private set; }

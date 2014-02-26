@@ -7,7 +7,7 @@ namespace Core_With_Tests
         event EventHandler<SuccessEventArgs> Success;
         event EventHandler<FailureEventArgs> Failure;
     }
-    public interface IValueGenerator
+    public interface IPriceGenerator
     {
         void Handle(string name, decimal value);
     }
