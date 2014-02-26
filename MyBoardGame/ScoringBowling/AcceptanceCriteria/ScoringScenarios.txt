@@ -1,0 +1,19 @@
+﻿Given I have a Game In Progress
+And I am on my first scoring frame
+And Its my attempt 1
+When I knock down 4 pieces
+The score of 4 is recorded by the board
+
+Given I have a Game In Progress
+And I am on my first scoring frame
+And Its my attempt 1
+And I already knocked down 4 pieces
+When I knock down 3 pieces
+The score of 7 is recorded by the board
+
+Given I have a Game In Progress
+And I am on my second scoring frame
+And Its my attempt 1
+And I already scored 7
+When I knock down 10 pieces (a strike)
+The score of 7 is recorded by the board
